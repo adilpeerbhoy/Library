@@ -1,0 +1,22 @@
+package com.skillstorm.library_spring_boot.repositories;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.skillstorm.library_spring_boot.models.Books;
+import com.skillstorm.library_spring_boot.models.Author;
+import com.skillstorm.library_spring_boot.models.Genre;
+
+@Repository
+public interface BooksRepository extends JpaRepository<Books, Integer> {
+    @Query(value = "select b from Books b ORDER BY status LIMIT 3", nativeQuery = false)
+    List<Books> findByStatus(String status);
+
+    List<Books> findByAuthor(Author author);
+
+    List<Books> findByGenre(Genre genre);
+    
+} 
