@@ -1,6 +1,7 @@
 package com.skillstorm.library_spring_boot.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +19,9 @@ public interface BooksRepository extends JpaRepository<Books, Integer> {
     List<Books> findByAuthor(Author author);
 
     List<Books> findByGenre(Genre genre);
+
+    Optional<Books> findByBarcode(int barcode);
+
+    void deleteByBarcode(int barcode);
     
 } 
