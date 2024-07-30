@@ -1,0 +1,17 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-LibrarySpringBootApplication<library-spring-boot>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.skillstorm.library_spring_boot.LibrarySpringBootApplication",
+      "projectName": "library-spring-boot",
+      "args": "",
+      "env": {
+        "db-username": "libadmin",
+        "db-password": "b00ks4U"
+      }
+    }
+  ]
+}
