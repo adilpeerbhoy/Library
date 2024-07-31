@@ -4,6 +4,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,10 +14,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@NamedEntityGraph(
+    name = "Books.withAuthor",
+    attributeNodes = @NamedAttributeNode("author")
+)
 @Table(name = "books")
 public class Books {
 
@@ -36,7 +44,13 @@ public class Books {
     @NotNull
     @JoinColumn(name = "author_id")
     @JsonIdentityReference(alwaysAsId=true)
+    @JsonManagedReference
     private Author author;
+
+    @JsonProperty("author")
+    public String getAuthorName() {
+        return author.getFirstName() + " " + author.getLastName();
+    }
 
     @ManyToOne
     @Cascade(CascadeType.PERSIST)
@@ -44,6 +58,11 @@ public class Books {
     @JoinColumn(name = "genre_id")
     @JsonIdentityReference(alwaysAsId=true)
     private Genre genre;
+
+    @JsonProperty("genre")
+    public String getGenre() {
+        return genre.getGenre();
+    }
 
     public int getBarcode() {
         return barcode;
@@ -77,19 +96,24 @@ public class Books {
         this.author = author;
     }
 
-    public Genre getGenre() {
-        return genre;
-    }
+    // public Genre getGenre() {
+    //     return genre;
+    // }
 
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
-    @Override
-    public String toString() {
-        return "Books [barcode=" + barcode + ", title=" + title + ", status=" + status + ", author=" + (author == null ? null : author.getFirstName()) + " " + (author == null ? null : author.getLastName())
-                + ", genre=" + genre + "]";
-    }
+    // @Override
+    // public String toString() {
+    //     return "Books [barcode=" + barcode + ", title=" + title + ", status=" + status + ", author=" + (author == null ? null : author.getFirstName()) + " " + (author == null ? null : author.getLastName())
+    //             + ", genre=" + genre + "]";
+    // }
 
     
+    @Override
+    public String toString() {
+        return "Books [barcode=" + barcode + ", title=" + title + ", status=" + status + "]";
+    }
+
 }

@@ -24,10 +24,10 @@ public class Author {
     private int id;
 
     @Column(length=50)
-    private String firstName;
+    private String firstname;
 
     @Column(length=50)
-    private String lastName;
+    private String lastname;
 
     // Create One-To-Many Mapping so author information can be inserted into books table
     @OneToMany(mappedBy = "author", targetEntity = Books.class)
@@ -36,10 +36,10 @@ public class Author {
 
     public Author(){}
 
-    public Author (int id, String firstName, String lastName) {
+    public Author (int id, String firstname, String lastname) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
     public int getId() {
@@ -51,19 +51,19 @@ public class Author {
     }
 
     public String getFirstName() {
-        return firstName;
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
 
     public List<Books> getBooks() {
@@ -76,7 +76,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", books=" + books + "]";
+        return "Author [id=" + id + ", firstName=" + firstname + ", lastName=" + lastname + ", books=" + books + "]";
     }
 
     
