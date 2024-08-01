@@ -4,8 +4,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,19 +37,19 @@ public class Books {
     @Column
     private String status;
 
-    // Join Author and Genre table colums - Author First and Last Name, Genre
+    // Join Author and Genre table columns - Author First and Last Name, Genre
     @ManyToOne
     @Cascade(CascadeType.PERSIST)
     @NotNull
     @JoinColumn(name = "author_id")
     @JsonIdentityReference(alwaysAsId=true)
-    @JsonManagedReference
+    //@JsonManagedReference
     private Author author;
 
-    @JsonProperty("author")
-    public String getAuthorName() {
-        return author.getFirstName() + " " + author.getLastName();
-    }
+    // @JsonProperty("author")
+    // public String getAuthorName() {
+    //     return author.getFirstName() + " " + author.getLastName();
+    // }
 
     @ManyToOne
     @Cascade(CascadeType.PERSIST)
@@ -59,10 +58,10 @@ public class Books {
     @JsonIdentityReference(alwaysAsId=true)
     private Genre genre;
 
-    @JsonProperty("genre")
-    public String getGenre() {
-        return genre.getGenre();
-    }
+    // @JsonProperty("genre")
+    // public String getGenre() {
+    //     return genre.getGenre();
+    // }
 
     public int getBarcode() {
         return barcode;
@@ -96,24 +95,24 @@ public class Books {
         this.author = author;
     }
 
-    // public Genre getGenre() {
-    //     return genre;
-    // }
+    public Genre getGenre() {
+         return genre;
+     }
 
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
-    // @Override
-    // public String toString() {
-    //     return "Books [barcode=" + barcode + ", title=" + title + ", status=" + status + ", author=" + (author == null ? null : author.getFirstName()) + " " + (author == null ? null : author.getLastName())
-    //             + ", genre=" + genre + "]";
-    // }
-
-    
     @Override
     public String toString() {
-        return "Books [barcode=" + barcode + ", title=" + title + ", status=" + status + "]";
+    return "Books [barcode=" + barcode + ", title=" + title + ", status=" + status + ", author=" + (author == null ? null : author.getFirstname()) + " " + (author == null ? null : author.getLastname())
+    + ", genre=" + genre + "]";
     }
+
+    
+    // @Override
+    // public String toString() {
+    //     return "Books [barcode=" + barcode + ", title=" + title + ", status=" + status + "]";
+    // }
 
 }

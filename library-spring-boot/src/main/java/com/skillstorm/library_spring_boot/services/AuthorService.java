@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.skillstorm.library_spring_boot.models.Author;
 import com.skillstorm.library_spring_boot.repositories.AuthorRepository;
-import com.skillstorm.library_spring_boot.repositories.BooksRepository;
 
 @Service
 public class AuthorService {

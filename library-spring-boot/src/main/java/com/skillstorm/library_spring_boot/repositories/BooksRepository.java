@@ -27,5 +27,9 @@ public interface BooksRepository extends JpaRepository<Books, Integer> {
     Optional<Books> findByBarcode(int barcode);
 
     void deleteByBarcode(int barcode);
+
+    List<Books> findByTitle(String title);
+
+    //Books save(@Valid String title);
     
 } 
