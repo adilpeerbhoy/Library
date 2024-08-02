@@ -1,3 +1,7 @@
+**Grading Notes**
+CRUD functionality for Books table work - can get (all and by ID), add, edit, and delete books in a library
+CRUD functionality for Library warehouse - can get libraries by all and by ID
+
 # Lending Library - A CRUD Application
 
 ### Background
