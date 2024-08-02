@@ -1,10 +1,12 @@
 package com.skillstorm.library_spring_boot.models;
 
+import java.util.List;
+
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -63,6 +65,30 @@ public class Books {
     //     return genre.getGenre();
     // }
 
+    // Update
+    // Mapping books with a library
+    @ManyToOne
+    @Cascade(CascadeType.PERSIST)
+    @JoinColumn(name = "library_id")
+    //@JsonIdentityReference(alwaysAsId=true)
+    @JsonBackReference
+    private Library library;
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
+    }
+
+    public List<Books> getBooks(List<Books> books) {
+        return books;
+    }
+    
+    public void setBooks(List<Books> books) {
+    }
+
     public int getBarcode() {
         return barcode;
     }
@@ -105,8 +131,8 @@ public class Books {
 
     @Override
     public String toString() {
-    return "Books [barcode=" + barcode + ", title=" + title + ", status=" + status + ", author=" + (author == null ? null : author.getFirstname()) + " " + (author == null ? null : author.getLastname())
-    + ", genre=" + genre + "]";
+        return "Books [barcode=" + barcode + ", title=" + title + ", status=" + status + ", author=" + author
+                + ", genre=" + genre + ", library=" + library + "]";
     }
 
     

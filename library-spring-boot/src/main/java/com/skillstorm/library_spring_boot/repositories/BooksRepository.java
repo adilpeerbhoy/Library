@@ -17,7 +17,8 @@ import com.skillstorm.library_spring_boot.models.Genre;
 public interface BooksRepository extends JpaRepository<Books, Integer> {
     @Query(value = "select b from Books b ORDER BY status LIMIT 3", nativeQuery = false)
     @EntityGraph(value = "Books.withAuthor", type = EntityGraphType.LOAD)
-
+    List<Books> findByTitle(String title);
+    
     List<Books> findByStatus(String status);
 
     List<Books> findByAuthor(Author author);
@@ -28,7 +29,7 @@ public interface BooksRepository extends JpaRepository<Books, Integer> {
 
     void deleteByBarcode(int barcode);
 
-    List<Books> findByTitle(String title);
+    
 
     //Books save(@Valid String title);
     

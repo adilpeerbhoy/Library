@@ -73,5 +73,15 @@ public class BooksService {
     public void deleteByBarcode(int barcode) {
         repo.deleteByBarcode(barcode);
     }
+
+    // public void createBooks(Books books) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'createBooks'");
+    // }
+
+    // public List<Books> getBooksByLibraryId(int id) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'getBooksByLibraryId'");
+    // }
     
 }
